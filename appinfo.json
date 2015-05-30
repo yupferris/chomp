@@ -1,0 +1,17 @@
+{
+    "uuid": "c24189c2-b6f8-4720-bb7f-a065fd6a7c61",
+    "shortName": "chomp",
+    "longName": "chomp",
+    "companyName": "ferris",
+    "versionCode": 1,
+    "versionLabel": "1.0",
+    "watchapp": {
+	"watchface": false
+    },
+    "appKeys": {
+	"dummy": 0
+    },
+    "resources": {
+	"media": []
+    }
+}
