@@ -3,24 +3,31 @@
 static Window *window;
 static TextLayer *textLayer;
 
-static Layer *render_layer;
+static Layer *renderLayer;
 
 static void window_load(Window *window) {
-    Layer *window_layer = window_get_root_layer(window);
-    GRect window_bounds = layer_get_bounds(window_layer);
+    Layer *windowLayer = window_get_root_layer(window);
+    GRect windowBounds = layer_get_bounds(windowLayer);
+
+    renderLayer = layer_create(windowBounds);
+
+    layer_add_child(windowLayer, renderLayer);
 
     GRect textBounds =
 	{
 	    .origin = { 0, 72 },
-	    .size = { window_bounds.size.w, 20 }
+	    .size = { windowBounds.size.w, 20 }
 	};
     textLayer = text_layer_create(textBounds);
+
     text_layer_set_text(textLayer, "chomp!");
     text_layer_set_text_alignment(textLayer, GTextAlignmentCenter);
-    layer_add_child(window_layer, text_layer_get_layer(textLayer));
+
+    layer_add_child(windowLayer, text_layer_get_layer(textLayer));
 }
 
 static void window_unload(Window *window) {
+    layer_destroy(renderLayer);
     text_layer_destroy(textLayer);
 }
 
